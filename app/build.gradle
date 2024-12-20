@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs'
+}
+
+android {
+    namespace 'com.example.deezerapp'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.example.deezerapp"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures{
+        buildConfig=true
+        viewBinding=true
+    }
+}
+
+dependencies {
+    implementation(Deps.core)
+    implementation(Deps.appCompat)
+    implementation(Deps.androidMaterial)
+    implementation(Deps.constraintLayout)
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    testImplementation(TestImplementation.junit)
+    androidTestImplementation(AndroidTestImplementation.junit)
+    androidTestImplementation(AndroidTestImplementation.espresso)
+    implementation(DaggerHilt.hilt)
+    kapt DaggerHilt.hiltAndroidCompiler
+    kapt DaggerHilt.hiltCompiler
+    implementation(Paging.common)
+    implementation(Paging.runtime)
+    implementation(Shimmer.shimmer)
+    implementation(AndroidLibraries.navigationFrag)
+    implementation(AndroidLibraries.navigation)
+    implementation(AndroidLibraries.livedata)
+    implementation(AndroidLibraries.viewmodel)
+    implementation(AndroidLibraries.lifeCycleViewModel)
+    implementation(AndroidLibraries.lifecycleViewModelExt)
+    implementation(AndroidLibraries.lifecycleRuntime)
+    implementation(AndroidLibraries.kotlinCoroutineAndroid)
+    implementation(KotlinLibraries.kotlinCoroutineCore)
+    implementation(project(Modules.common))
+    implementation(project(Modules.domain))
+    implementation(project(Modules.data))
+}
